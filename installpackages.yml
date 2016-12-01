@@ -1,0 +1,25 @@
+---
+- hosts: webservers
+  become: yes
+
+  tasks: 
+  - name: install httpd package
+    yum: name=httpd state=present
+  - name: start the service
+    service: name=httpd state=started
+
+- hosts: dbservers
+  become: yes
+
+  tasks: 
+  - name: install mysql-server
+    yum: name=mysql-server state=present
+  - name: start the service
+    service: name=mysqld state=started
+
+- hosts: dbservers:webservers
+  become: yes
+
+  tasks:
+  - name: removed ip tables
+    service: name=iptables state=stopped
