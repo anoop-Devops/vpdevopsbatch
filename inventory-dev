@@ -7,3 +7,4 @@ web
 [datacenter:children]
 dbservers
 webservers
+inventory files changes newly
